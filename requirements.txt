@@ -1,0 +1,10 @@
+python-dotenv      # For reading environment variables stored in .env file
+langchain
+langchain-community
+langchain-openai   # For embeddings
+unstructured       # Document loading
+unstructured[md]
+# For Windows users, install Microsoft Visual C++ Build Tools first
+chromadb           # For MAC users, install onnxruntime before installing `chromadb`
+openai             # For embeddings
+tiktoken           # For embeddings
