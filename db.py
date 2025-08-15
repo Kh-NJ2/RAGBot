@@ -9,7 +9,6 @@ from langchain_community.vectorstores import Chroma
 import shutil    # lets you move, copy, delete files & folders at a higher level than os.
 
 
-PATH = "files"
 CHROMA_PATH = "chroma"
 
 load_dotenv()
@@ -17,8 +16,8 @@ load_dotenv()
 openai.api_key = os.environ['OPENAI_API_KEY']   # reads the api OPENAI_API_KEY value from .env file
 
 
-def documents_loader():
-    loader = DirectoryLoader(PATH, glob="*.md")
+def documents_loader(path):
+    loader = DirectoryLoader(path, glob="*.md")
     documents = loader.load()
 
     return documents
@@ -46,14 +45,15 @@ def save_to_chroma(chunks: list[Document]):
     db.persist()    # saves to disk so they stay stored for future use.
     
     
-def load_store():
-    documents = documents_loader()
+def load_store(path):
+    documents = documents_loader(path)
     chunks = split_text(documents)
     save_to_chroma(chunks)
      
 
 if __name__ == "__main__":
-    load_store()
+    path = input("input your folder path: ")
+    load_store(path)
 
 
   
